@@ -1,0 +1,53 @@
+<html ng-app="fair">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+  <title>Online IT Fair Template</title>
+  <link rel="icon" href="favicon.png" sizes="any" type="image/png">
+  <link rel="stylesheet" href="main.css">
+
+</head>
+<body ng-controller="fairCtrl" ondragstart="return false;" ondrop="return false;">
+  <h1 class="title" ng-bind="title"></h1>
+  <div class="user-box">
+    <p><b ng-bind="user"></b>&emsp;<span ng-hide="loading" class="score" ng-bind="score"></span></p>
+    
+  </div>
+  <div class="container" ng-hide="loading">
+  <div class="quiz" ng-repeat="quiz in quizzes" style="top:{{quiz.y}}px;left:{{quiz.x}}px">
+      <img ng-src="{{quiz.icon}}" ng-click="open_quiz(quiz)"/>
+      <p><b ng-bind="quiz.title" ng-click="open_quiz(quiz)"></b></p>
+      <span class="score" ng-bind="quiz.score"></span>
+    </div>
+  </div>
+  <div ng-show="showing_quiz" class="quiz-modal-wrapper">
+    <div class="quiz-modal">
+      <span class="close-modal" ng-click="close_quiz()">X</span>
+      <h3 ng-bind="current_quiz.title"></h3>
+      <div ng-repeat="content in current_quiz.contents">
+        <img ng-if="content.type=='image'" ng-src="{{content.url}}"/>
+        <p ng-if="content.type=='text'" ng-bind="content.text"></p>
+      </div>
+      <input type="text" ng-show="current_quiz.type=='text'" ng-model="ans" />
+      <div ng-show="current_quiz.type=='choice'" ng-repeat="choice in current_quiz.choices track by $index">
+        <label>
+          <input type="radio" name="q-choice" ng-value="choice" ng-model="$parent.ans" /> {{choice}}
+        </label>
+      </div>
+      <div ng-show="current_quiz.type=='checkbox'" ng-repeat="choice in current_quiz.choices track by $index">
+        <label>
+          <input type="checkbox" name="q-choice" ng-value="choice" ng-model="$parent.ans[choice]" /> {{choice}}
+        </label>
+      </div>
+      <input type="submit" ng-value="current_quiz.type=='info'?'Claim points':'Submit answer'" ng-click="submit_quiz()">
+    </div>
+  </div>
+
+  <pre ng-if="debug" style="position:absolute;top:0;left:0;width:300px;background:#eeea;" ng-bind="ans | json"></pre>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</html>
