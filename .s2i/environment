@@ -1,0 +1,8 @@
+APP_TITLE = Demo Fair Container
+Q1_ID = 1
+Q1_TYPE = choice
+Q1_CHOICES = Welcome Quiz
+Q1_CONTENTS = Last night, Last week, Last month, Last year
+Q1_SCORE = 100
+Q1_ICON = /icons/icon5.png
+Q1_POSITION = 120, 100
