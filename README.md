@@ -1,9 +1,6 @@
-# online-fair-demo
-Demo repository for hands-on
-
 # Instructions
 
-### Create our first container application
+### 1. Create our first container application
 1. Access your console and check your permission
 2. Create New Application (+Add) From Catalog 
    - Select PHP builder image
@@ -14,12 +11,16 @@ Demo repository for hands-on
         - Insecure Traffic: **None**
    - Click Create Application
 
-### Inspect how source-to-image deployment strategy works
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### 2. Inspect how source-to-image deployment strategy works
 1. Under Topology page, click on your new application's circle
 2. Under Builds, you will see running build, click **View Logs** to see what is happenning
 3. Once build is completed, go back to Topology page and access your application from **open URL** shortcut (top-right corner of your application's circle)
 
-### Updating application configuration in environment variable
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### 3. Updating application configuration in environment variable
 1. Under Topology page, click on your new application's circle
 2. Click on deployment name at the top of the section (with **'D'** tag)
 3. Under Deployment, click on **Environment** tab
